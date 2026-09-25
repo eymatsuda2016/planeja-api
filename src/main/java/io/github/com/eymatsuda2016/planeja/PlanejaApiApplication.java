@@ -1,4 +1,4 @@
-package io.github.ds.planeja;
+package io.github.com.eymatsuda2016.planeja;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
