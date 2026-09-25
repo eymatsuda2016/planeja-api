@@ -1,0 +1,4 @@
+2026-09-25 17:09:57.828070-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "insert into cartao(id, bandeira, data_cadastro, nome)\000d\000avalues('35e3c935-4d19-4935-9dd3-d2c3cbf74fe6', 'VISA', now(), 'Nubank Platinum'[*]"; expected "[, ., ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"; SQL statement:
+insert into cartao(id, bandeira, data_cadastro, nome)
+values('35e3c935-4d19-4935-9dd3-d2c3cbf74fe6', 'VISA', now(), 'Nubank Platinum' [42001-240]
