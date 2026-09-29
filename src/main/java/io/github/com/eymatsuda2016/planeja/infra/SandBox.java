@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 //Esta Classe é a Sala de Testes
 @Component
-public class SendBox implements CommandLineRunner {
+public class SandBox implements CommandLineRunner {
 
     @Autowired
     private CartaoRepository repository;
@@ -24,6 +24,6 @@ public class SendBox implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        salvarCartao();
+
     }
 }
