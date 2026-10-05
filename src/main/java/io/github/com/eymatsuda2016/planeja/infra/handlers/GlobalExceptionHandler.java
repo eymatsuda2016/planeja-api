@@ -1,5 +1,6 @@
 package io.github.com.eymatsuda2016.planeja.infra.handlers;
 
+import io.github.com.eymatsuda2016.planeja.common.exceptions.RegistroNaoEncontradoException;
 import io.github.com.eymatsuda2016.planeja.common.exceptions.ValidationException;
 import io.github.com.eymatsuda2016.planeja.common.validation.CampoInvalido;
 import org.springframework.http.HttpStatus;
@@ -15,10 +16,11 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(ValidationException.class)
     public ResponseEntity<?> handleValidationException(ValidationException e) {
         var status = HttpStatus.UNPROCESSABLE_CONTENT;
-        var body = Map.of("timestamp", LocalDateTime.now(),
+        var body = Map.of(
+                "timestamp", LocalDateTime.now(),
                 "status", status.value(),
                 "erro", e.getMessage(),
                 "camposInvalidos", e.getCamposInvalido()
@@ -36,11 +38,25 @@ public class GlobalExceptionHandler {
                 .toList();
 
         var status = HttpStatus.UNPROCESSABLE_CONTENT;
-        var body = Map.of("timestamp", LocalDateTime.now(),
+        var body = Map.of(
+                "timestamp", LocalDateTime.now(),
                 "status", status.value(),
                 "erro", e.getMessage(),
                 "camposInvalidos", camposInvalidos
         );
         return ResponseEntity.status(status).body(body);
+    }
+
+    @ExceptionHandler(RegistroNaoEncontradoException.class)
+    public ResponseEntity<?> handleRegistroNaoEncontradoException(
+            RegistroNaoEncontradoException e){
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(Map.of(
+                    "timestamp", LocalDateTime.now(),
+                    "status", HttpStatus.NOT_FOUND.value(),
+                    "error", e.getMessage(),
+                        "message", e.getMessage()
+                ));
     }
 }
