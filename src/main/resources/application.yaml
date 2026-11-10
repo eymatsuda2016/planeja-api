@@ -9,7 +9,7 @@ spring:
     password: sa
   jpa:
     hibernate:
-      ddl=auto: update #data definition languague - sql
+      ddl-auto: update #data definition language - sql
     show-sql: true
     properties:
       hibernate:

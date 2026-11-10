@@ -9,6 +9,8 @@ import io.github.com.eymatsuda2016.planeja.dominio.cartao.mapper.CartaoMapper;
 import io.github.com.eymatsuda2016.planeja.dominio.cartao.model.CartaoEntity;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.UUID;
@@ -53,5 +55,10 @@ public class CartaoService {
             throw new ValidationException(result.getCampoInvalidos());
         }
         mapper.update(entity, dadosAtualizacao);
+    }
+
+    public Page<CartaoDetalhe> listar(PageRequest pageRequest) {
+        return repository.findAll(pageRequest)
+                .map(mapper::toDetalhe);
     }
 }

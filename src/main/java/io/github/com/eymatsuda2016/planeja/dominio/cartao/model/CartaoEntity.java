@@ -22,7 +22,7 @@ public class CartaoEntity {
     private String nome;
 
     @Column(name = "bandeira")
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = BandeiraCartaoConverter.class)
     private BandeiraCartao bandeira;
 
     @Column(name = "data_cadastro")
